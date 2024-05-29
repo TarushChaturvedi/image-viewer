@@ -1,2 +1,2 @@
-bin/image-viewer
-.vscode/settings.json
+build/
+cmake.sh
