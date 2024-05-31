@@ -29,6 +29,11 @@ int main(int argc, const char* argv[]) {
 
   SDL_Surface* tempSurface = IMG_Load(argv[1]);
 
+  if (tempSurface == NULL) {
+    fprintf(stderr, "IMG_Load() failed, error: %s\n", SDL_GetError());
+    return -1;
+  }
+
   if(SDL_CreateWindowAndRenderer(tempSurface->w, tempSurface->h, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MOUSE_FOCUS, &window, &renderer) != 0) {
     fprintf(stderr, "SDL_CreateWindowAndRenderer() failed, error: %s\n", SDL_GetError());
     return -1;
