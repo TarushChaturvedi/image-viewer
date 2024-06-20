@@ -34,7 +34,7 @@ int main(int argc, const char* argv[]) {
     return -1;
   }
 
-  if(SDL_CreateWindowAndRenderer(tempSurface->w, tempSurface->h, SDL_WINDOW_RESIZABLE | SDL_WINDOW_MOUSE_FOCUS, &window, &renderer) != 0) {
+  if (SDL_CreateWindowAndRenderer(tempSurface->w, tempSurface->h, (SDL_WINDOW_RESIZABLE | SDL_WINDOW_MOUSE_FOCUS), &window, &renderer) != 0) {
     fprintf(stderr, "SDL_CreateWindowAndRenderer() failed, error: %s\n", SDL_GetError());
     return -1;
   }
@@ -54,8 +54,13 @@ int main(int argc, const char* argv[]) {
     handleEvents();
   }
 
-  SDL_Quit();
+  // Free up memory
 
+  SDL_DestroyTexture(texture);
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
+
+  SDL_Quit();
   return 0;
 }
 
